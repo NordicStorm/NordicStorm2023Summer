@@ -11,6 +11,7 @@ import frc.robot.commands.PitchThing;
 import frc.robot.commands.PitchThing2;
 import frc.robot.commands.PitchThing3;
 import frc.robot.commands.PitchThing4;
+import frc.robot.commands.PitchThing4a;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,8 +31,7 @@ public class RobotContainer {
   public static final Arm arm = new Arm();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandJoystick m_driverController =
-      new CommandJoystick(OperatorConstants.kDriverControllerPort);
+  private final CommandJoystick m_driverController = new CommandJoystick(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -59,7 +59,8 @@ public class RobotContainer {
     m_driverController.button(4).whileTrue(new PitchThing2());
     m_driverController.button(5).whileTrue(new PitchThing3(.1));
     m_driverController.button(6).whileTrue(new PitchThing3(-.1));
-    m_driverController.button(8).whileTrue(new PitchThing4(-.5));
+    m_driverController.button(8).whileTrue(new PitchThing4(-.5));   
+    m_driverController.button(7).whileTrue(new PitchThing4a(.5));
   }
 
   /**
