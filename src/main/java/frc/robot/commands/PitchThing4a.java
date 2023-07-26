@@ -9,15 +9,15 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class PitchThing3 extends CommandBase {
+public class PitchThing4a extends CommandBase {
 
     private double power;
-
+    private long start;
     /**
      * Creates a new ExampleCommand.
      *
      */
-    public PitchThing3(double power) {
+    public PitchThing4a(double power) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(RobotContainer.arm);
         this.power=power;
@@ -26,6 +26,7 @@ public class PitchThing3 extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        start = System.currentTimeMillis();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -43,6 +44,6 @@ public class PitchThing3 extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return System.currentTimeMillis() - start >= 1000;
     }
 }
