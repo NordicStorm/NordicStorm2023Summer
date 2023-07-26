@@ -10,6 +10,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.PitchThing;
 import frc.robot.commands.PitchThing2;
 import frc.robot.commands.PitchThing3;
+import frc.robot.commands.PitchThing4;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -58,7 +59,7 @@ public class RobotContainer {
     m_driverController.button(4).whileTrue(new PitchThing2());
     m_driverController.button(5).whileTrue(new PitchThing3(.1));
     m_driverController.button(6).whileTrue(new PitchThing3(-.1));
-
+    m_driverController.button(8).whileTrue(new PitchThing4(-.5));
   }
 
   /**

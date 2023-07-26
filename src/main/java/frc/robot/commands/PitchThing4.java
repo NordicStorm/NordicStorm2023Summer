@@ -9,17 +9,18 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class PitchThing3 extends CommandBase {
+public class PitchThing4 extends CommandBase {
     @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
 
     private double power;
+    private long start;
 
     /**
      * Creates a new ExampleCommand.
      *
      * @param power The amount of power to send
      */
-    public PitchThing3(double power) {
+    public PitchThing4(double power) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(RobotContainer.arm);
         this.power=power;
@@ -28,6 +29,8 @@ public class PitchThing3 extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        start = System.currentTimeMillis();
+        
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -45,6 +48,6 @@ public class PitchThing3 extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return System.currentTimeMillis() - start >= 1000 ;
     }
 }
