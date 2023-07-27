@@ -13,20 +13,23 @@ public class PitchThing4a extends CommandBase {
 
     private double power;
     private long start;
+    private long time;
     /**
      * Creates a new ExampleCommand.
      *
      */
-    public PitchThing4a(double power) {
+    public PitchThing4a(double power, long time) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(RobotContainer.arm);
         this.power=power;
+        this.time = time;
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
         start = System.currentTimeMillis();
+    
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -44,6 +47,6 @@ public class PitchThing4a extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return System.currentTimeMillis() - start >= 1000;
+        return System.currentTimeMillis() - start >= time;
     }
 }
