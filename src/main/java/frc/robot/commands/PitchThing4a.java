@@ -29,7 +29,6 @@ public class PitchThing4a extends CommandBase {
     @Override
     public void initialize() {
         start = System.currentTimeMillis();
-    
     }
 
     // Called every time the scheduler runs while the command is scheduled.

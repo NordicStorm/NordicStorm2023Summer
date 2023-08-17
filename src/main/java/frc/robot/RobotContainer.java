@@ -4,18 +4,21 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.OperatorControl;
 import frc.robot.commands.PitchThing;
 import frc.robot.commands.PitchThing2;
 import frc.robot.commands.PitchThing3;
 import frc.robot.commands.PitchThing4a;
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -28,15 +31,19 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static final Arm arm = new Arm();
-
+  public static final Drivetrain drivetrain = new Drivetrain();
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandJoystick m_driverController = new CommandJoystick(OperatorConstants.kDriverControllerPort);
+  public final static Joystick leftJoystick = new Joystick(0);
+  public final static Joystick rightJoystick = new Joystick(1);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    drivetrain.setDefaultCommand(new OperatorControl());
+
   }
+
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -54,12 +61,12 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.button(3).whileTrue(new PitchThing());
-    m_driverController.button(4).whileTrue(new PitchThing2());
-    m_driverController.button(5).whileTrue(new PitchThing3(.1));
-    m_driverController.button(6).whileTrue(new PitchThing3(-.1)); 
-    m_driverController.button(8).onTrue(new PitchThing4a(-1, 1));   
-    m_driverController.button(7).onTrue(new PitchThing4a(.15, 1000));
+    new JoystickButton(rightJoystick, 3).whileTrue(new PitchThing());
+    new JoystickButton(rightJoystick, 4).whileTrue(new PitchThing2());
+    new JoystickButton(rightJoystick, 5).whileTrue(new PitchThing3(.1));
+    new JoystickButton(rightJoystick, 6).whileTrue(new PitchThing3(-.1)); 
+    new JoystickButton(rightJoystick, 8).onTrue(new PitchThing4a(-1, 1));   
+    new JoystickButton(rightJoystick, 7).onTrue(new PitchThing4a(.15, 1000));
   }
 
   /**
